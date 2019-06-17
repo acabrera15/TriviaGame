@@ -1,0 +1,8 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(../fonts/GABRWFFR.TTF);
+}
+
+.test {
+    font-family: myFirstFont;
+  }
