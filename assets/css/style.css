@@ -6,3 +6,7 @@
 .test {
     font-family: myFirstFont;
   }
+
+  body {
+      background-image: url(../images/friendWallpaper.jpg);
+  }
