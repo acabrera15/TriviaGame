@@ -10,3 +10,7 @@
   body {
       background-image: url(../images/friendWallpaper.jpg);
   }
+
+  #initialButton {
+      font-size: 30px
+  }
