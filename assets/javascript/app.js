@@ -22,7 +22,7 @@ var questionsAndAnswers = [
   {
     question: "How many sisters does Joseph Tribianni have?",
     correctAnswer: "seven",
-    allAnswer: ["four", "tweleve", "one", "seventeen"]
+    allAnswer: ["four", "tweleve", "seven", "seventeen"]
   },
   {
     question: "What did Ross dress up as in the Halloween episode?",
@@ -30,7 +30,7 @@ var questionsAndAnswers = [
     allAnswer: ["Spudnick", "A bunny", "A  murse", "A Paleontologist"]
   },
   {
-    question: "Who played Rachael's older boyfriend, Paul Stevens?",
+    question: "Who played Rachel's older boyfriend, Paul Stevens?",
     correctAnswer: "Bruce Willis",
     allAnswer: [
       "Bruce Willis",
@@ -38,6 +38,26 @@ var questionsAndAnswers = [
       "Brad Pitt",
       "Tom Selleck"
     ]
+  },
+  {
+    question: "What was the name of Pheobe's most popular song?",
+    correctAnswer: "Smelly Cat",
+    allAnswer: ["Smelly Cat", "Stinky Pup", "Broken Yolk", "Tiny Feets"]
+  },
+  {
+    question: "Who plays one of Rachel's sisters?",
+    correctAnswer: "Reese Witherspoon",
+    allAnswer: [
+      "Reese Witherspoon",
+      "Winona Ryder",
+      "Dakota Fanning",
+      "Ellen Pompeo"
+    ]
+  },
+  {
+    question: "What year did Friends end?",
+    correctAnswer: "2004",
+    allAnswer: ["2004", "1997", "2007", "2000"]
   }
 ];
 
@@ -98,18 +118,26 @@ var addRowsToDisplay = function(index, arr) {
     value="${answer}"
   />`
     );
-
   });
 
   $(".answerButtons").on("click", function(e) {
     console.log(e.currentTarget.defaultValue);
     if (e.currentTarget.defaultValue === arr[index].correctAnswer) {
-        //TODO: insert GIF
-        createTheYouWonScreen();
+      //TODO: insert GIF
+      createTheYouWonScreen();
     }
   });
 };
 
 var createTheYouWonScreen = function() {
-    $('.test').remove();
+  $(".test").remove();
+
+  $(".container").append(
+    `<div id="correctAnswerDiv" class="row justify-content-center">
+            <div class="col-md-8 justify-content-center">
+                <p class="text-center">That was the correct answer!</p>
+                <img src="https://via.placeholder.com/150" alt="placeholder" />
+           </div>
+        </div>`
+  );
 };
