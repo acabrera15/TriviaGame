@@ -104,7 +104,12 @@ var addRowsToDisplay = function(index, arr) {
   $(".answerButtons").on("click", function(e) {
     console.log(e.currentTarget.defaultValue);
     if (e.currentTarget.defaultValue === arr[index].correctAnswer) {
-        
+        //TODO: insert GIF
+        createTheYouWonScreen();
     }
   });
+};
+
+var createTheYouWonScreen = function() {
+    $('.test').remove();
 };
