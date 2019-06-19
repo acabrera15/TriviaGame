@@ -75,6 +75,8 @@ var time;
 var count = 0;
 var timer = 30;
 var randomArrayOfQuestions = randomizeArray(questionsAndAnswers);
+var wins = 0;
+var losses = 0;
 
 $(document).ready(function() {
   //sets up the game when the start button is clicked
@@ -90,7 +92,8 @@ $(document).ready(function() {
         $(".timer").text(`Time Remaining: ${timer} seconds`);
         timer--;
       } else if (timer === 0) {
-        //advance loss++
+        losses++;
+        createLossScreen();
       }
     }, 1000);
   });
@@ -130,10 +133,47 @@ var addRowsToDisplay = function(index, arr) {
       //TODO: insert GIF
       createTheYouWonScreen();
       clearInterval(time);
+      wins++;
+    } else {
+      losses++;
+      createLossScreen();
+      clearInterval(time);
     }
   });
 };
 
+var createLossScreen = function() {
+  $(".test").remove();
+
+  $(".container").append(
+    `<div id="correctAnswerDiv" class="row justify-content-center">
+                <div class="col-md-8 justify-content-center">
+                    <p class="text-center">That answer was incorrect!</p>
+                    <img src="https://via.placeholder.com/150" alt="placeholder" />
+               </div>
+            </div>`
+  );
+  console.log(losses);
+
+  setTimeout(function() {
+    console.log("hell0?");
+    $("#correctAnswerDiv").remove();
+    addRowsToDisplay(++count, randomArrayOfQuestions);
+
+    //adds and sets the coundowmmmmmm timer to the display
+    timer = 30;
+    time = setInterval(function() {
+      if (timer > 0) {
+        $(".timer").text(`Time Remaining: ${timer} seconds`);
+        timer--;
+      } else if (timer === 0) {
+
+      }
+    }, 1000);
+  }, 3000);
+};
+
+//populates the display was the content for wins
 var createTheYouWonScreen = function() {
   $(".test").remove();
 
@@ -147,17 +187,19 @@ var createTheYouWonScreen = function() {
   );
 
   setTimeout(function() {
-      console.log('hell0?');
-      $("#correctAnswerDiv").remove();
+    console.log("hell0?");
+    $("#correctAnswerDiv").remove();
     addRowsToDisplay(++count, randomArrayOfQuestions);
-        //adds and sets the coundowmmmmmm timer to the display
-        time = setInterval(function() {
-            if (timer > 0) {
-              $(".timer").text(`Time Remaining: ${timer} seconds`);
-              timer--;
-            } else if (timer === 0) {
-              //advance loss++
-            }
-          }, 1000);
+
+    //adds and sets the coundowmmmmmm timer to the display
+    timer = 30;
+    time = setInterval(function() {
+      if (timer > 0) {
+        $(".timer").text(`Time Remaining: ${timer} seconds`);
+        timer--;
+      } else if (timer === 0) {
+
+      }
+    }, 1000);
   }, 3000);
 };
