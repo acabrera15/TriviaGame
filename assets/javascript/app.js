@@ -61,29 +61,6 @@ var questionsAndAnswers = [
   }
 ];
 
-$(document).ready(function() {
-  //creates an array of the quesion array so every play is different
-  var randomArrayOfQuestions = randomizeArray(questionsAndAnswers);
-  var count = 0;
-  var timer = 30;
-
-  //sets up the game when the start button is clicked
-  $("#initialButton").on("click", function() {
-    $(".buttonRow").remove();
-
-    //adds the questions and the answers to the display
-    addRowsToDisplay(count, randomArrayOfQuestions);
-
-    //adds and sets the coundowm timer to the display
-    var time = setInterval(function() {
-      if (timer >= 0) {
-        $(".timer").text(`Time Remaining: ${timer} seconds`);
-        timer--;
-      }
-    }, 1000);
-  });
-});
-
 var randomizeArray = function(arr) {
   let array2 = [];
   while (arr.length !== 0) {
@@ -94,6 +71,32 @@ var randomizeArray = function(arr) {
   return array2;
 };
 
+var time;
+var count = 0;
+var timer = 30;
+var randomArrayOfQuestions = randomizeArray(questionsAndAnswers);
+
+$(document).ready(function() {
+  //sets up the game when the start button is clicked
+  $("#initialButton").on("click", function() {
+    $(".buttonRow").remove();
+
+    //adds the questions and the answers to the display
+    addRowsToDisplay(count, randomArrayOfQuestions);
+
+    //adds and sets the coundowmmmmmm timer to the display
+    time = setInterval(function() {
+      if (timer > 0) {
+        $(".timer").text(`Time Remaining: ${timer} seconds`);
+        timer--;
+      } else if (timer === 0) {
+        //advance loss++
+      }
+    }, 1000);
+  });
+});
+
+//adds the rows that have the questions and answers to screen
 var addRowsToDisplay = function(index, arr) {
   $("<div>", {
     class: "row justify-content-center test"
@@ -120,11 +123,13 @@ var addRowsToDisplay = function(index, arr) {
     );
   });
 
+  //adds the functionality for answer buttons to be pushed
   $(".answerButtons").on("click", function(e) {
     console.log(e.currentTarget.defaultValue);
     if (e.currentTarget.defaultValue === arr[index].correctAnswer) {
       //TODO: insert GIF
       createTheYouWonScreen();
+      clearInterval(time);
     }
   });
 };
@@ -140,4 +145,19 @@ var createTheYouWonScreen = function() {
            </div>
         </div>`
   );
+
+  setTimeout(function() {
+      console.log('hell0?');
+      $("#correctAnswerDiv").remove();
+    addRowsToDisplay(++count, randomArrayOfQuestions);
+        //adds and sets the coundowmmmmmm timer to the display
+        time = setInterval(function() {
+            if (timer > 0) {
+              $(".timer").text(`Time Remaining: ${timer} seconds`);
+              timer--;
+            } else if (timer === 0) {
+              //advance loss++
+            }
+          }, 1000);
+  }, 3000);
 };
