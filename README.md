@@ -1,1 +1,1 @@
-# TriviaGame
+# Friend's Trivia Game (HTML, CSS, BOOTSTRAP, JAVASCRIPT, JQUERY)
