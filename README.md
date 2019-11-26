@@ -1,6 +1,6 @@
 # Friend's Trivia Game (Bootstrap, jQuery)
 
-Live: https://github.com/acabrera15/TriviaGame.git
+Live: https://acabrera15.github.io/TriviaGame/
 
 A timed trivia game based around the show Friend's TV show
 
